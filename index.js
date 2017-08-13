@@ -16,14 +16,14 @@ exports.getClientIp      = _getClientIp;
 
 /**
  * 从JSON文件中获取出行
- * @param  {[type]} file     JSON文件的路径，文件路径从根目录开始。
- * @param  {[type]} propsStr 以.分割的属性列表
- * @return {[type]}          返回获取的属性
+ * @param  {[type]} file          JSON文件的路径，文件路径从根目录开始。
+ * @param  {[type]} propertiesStr 以.分割的属性列表
+ * @return {[type]}               返回获取的属性
  */
 function _getJsonProp(file, propertiesStr){
   var jsonData = file;
 
-  if (!file || !propsStr) {
+  if (!file || !propertiesStr) {
     throw new 'swa-utils.getJsonProp 方法需要两个参数。' ;
   }
 
@@ -34,8 +34,8 @@ function _getJsonProp(file, propertiesStr){
   /*结果*/
   var result;
 
-  if(util.isObject(configData)){
-    result = _getPropertyTool();
+  if(util.isObject(jsonData)){
+    result = _getPropertyTool(jsonData, propertiesStr);
   }else{
     result = undefined;
   }
@@ -122,12 +122,12 @@ function _resolveUrl(sUrl, sPath, oQuery){
  */ 
 function _extend(oTarget /*oSources*/){
   oTarget = oTarget || {};
-  if (_typeof(oTarget) !== 'object') {
+  if (!util.isObject(oTarget)) {
     oTarget = {};
   }
 
   for (var i = 1; i < arguments.length; i++) {
-    if (!arguments[i] || _typeof(arguments[i]) != 'object') {
+    if (!arguments[i] || !util.isObject(arguments[i])) {
       continue;
     }
 

@@ -9,82 +9,26 @@ var muk = require('muk');
 
 describe('fdp-utils 测试', function(){
 
-  /*1.*/
-  describe('typeof 方法测试', function(){
-    it('null的类型为null', function(){
-      assert.equal(fdpUtil.typeof(null), 'null');
-    });
-
-    it('undefined的类型为undefined', function(){
-      assert.equal(fdpUtil.typeof(undefined), 'undefined');
-      assert.equal(fdpUtil.typeof(), 'undefined');
-    });
-
-    it('数值类型为number', function(){
-      assert.equal(fdpUtil.typeof(1.1), 'number');
-    });
-
-    it('字符串类型为string', function(){
-      assert.equal(fdpUtil.typeof('1.1'), 'string');
-    });
-
-    it('布尔值类型为boolean', function(){
-      assert.equal(fdpUtil.typeof(false), 'boolean');
-    });
-
-    it('对象类型为object', function(){
-      assert.equal(fdpUtil.typeof({}), 'object');
-    });
-
-    it('数组类型为array', function(){
-      assert.equal(fdpUtil.typeof([]), 'array');
-    });
-
-    it('函数类型为 function', function(){
-      assert.equal(fdpUtil.typeof(function(){}), 'function');
-    });
-  });
-
-  /*2.*/
   describe('getJsonProp 方法测试', function(){
-    describe('有 NODE_FDP_ROOT 环境变量', function(){
-      before(function(){
-        process.env.NODE_FDP_ROOT = __dirname;
-      });
-
-      after(function(){
-        delete process.env.NODE_FDP_ROOT;
-      });
-
-      it('不传递任何参数时返回undefined', function(){
-        assert.equal(fdpUtil.getJsonProp(), undefined);
-      });
-
-      it('传递一个不存在的文件路径, 应当返回undefined.', function(){
-        assert.equal(fdpUtil.getJsonProp('aa.js'), undefined);
-      });
-
-      it('传递一个不存在的文件路径和任意参数, 应当返回undefined.', function(){
-        assert.equal(fdpUtil.getJsonProp('aa.js', 'user.name'), undefined);
-      });
-
-      it('传递一个不内容错误的文件正确参数, 应当返回undefined.', function(){
-        assert.equal(fdpUtil.getJsonProp('fdp-config.txt', 'user.name'), undefined);
-      });
-
-      it('两个正确参数, 应当返回istanbul.', function(){
-        assert.equal(fdpUtil.getJsonProp('fdp-config.js', 'user.name'), 'istanbul');
-      });
+    it('参数不全，抛出异常', function(){
+      assert.throws(function(){
+        fdpUtil.getJsonProp();
+      }, 'swa-utils.getJsonProp 方法需要两个参数。');
     });
 
-    describe('没有设置 NODE_FDP_ROOT 环境变量', function(){
-      it('两个正确参数, 应当返回undefined.', function(){
-        assert.equal(fdpUtil.getJsonProp('fdp-config.js', 'user.name'), undefined);
-      });
+    it('两个正确参数, 应当返回 istanbul.', function(){
+      assert.equal(fdpUtil.getJsonProp(path.join(__dirname, 'config.js'), 'user.name'), 'istanbul');
+    });
+
+    it('两个正确参数, 应当返回 istanbul2.', function(){
+      assert.equal(fdpUtil.getJsonProp({name: 'istanbul2'}, 'name'), 'istanbul2');
+    });
+
+    it('第一个参数格式错误, 应当返回 undefined.', function(){
+      assert.equal(fdpUtil.getJsonProp(function(){}, 'name'), undefined);
     });
   });
 
-  /*3.*/
   describe('createDir 方法测试', function(){
     var sDitrPath;
     before(function(){
@@ -124,7 +68,6 @@ describe('fdp-utils 测试', function(){
     });
   });
 
-  /*4.*/
   describe('resolveUrl 方法测试', function(){
     it('无任何参数，返回空字符串', function(){
       fdpUtil.resolveUrl().should.equal('');
@@ -185,18 +128,9 @@ describe('fdp-utils 测试', function(){
 
   });
 
-  describe('extend 方法测试', function(){
-    it('无参数', function(){
-      fdpUtil.extend().should.deepEqual({});
-    });
-
-    it('第一个参数不为Object', function(){
-      fdpUtil.extend('dddd', {a: 'aa'}).should.deepEqual({a: 'aa'});
-    });
-  });
-
   describe('getLocalIpV4 方法测试', function(){
-    let localIp = '10.1.7.193';
+    let localIp = '192.168.1.3';
+    // let localIp = '10.1.7.193';
     it('无参数', function(){
       fdpUtil.getLocalIpV4().should.equal(localIp);/*测试时配置*/
     });
@@ -216,7 +150,8 @@ describe('fdp-utils 测试', function(){
   });
 
   describe('getLocalIpV6 方法测试', function(){
-    let localIp = 'fe80::4013:e0a1:8621:f913';
+    let localIp = 'fe80::884b:163c:faa4:f4f3';
+    // let localIp = 'fe80::4013:e0a1:8621:f913';
 
     it('无参数', function(){
       fdpUtil.getLocalIpV6().should.equal(localIp);/*测试时配置*/
