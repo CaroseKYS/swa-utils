@@ -6,9 +6,11 @@ swa平台的工具包
 
 ## 使用方式
 
+### 加载模块
     var utils = require('swa-utils');
     
-    fdpUtil.getJsonProp('fdp-config.txt', 'user.name');
+    fdpUtil.getJsonProp('./config.json', 'user.name');
+    fdpUtil.getJsonProp({}, 'user.name');
     
     fdpUtil.createDir('D:\test');
     
