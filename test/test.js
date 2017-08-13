@@ -129,8 +129,8 @@ describe('fdp-utils 测试', function(){
   });
 
   describe('getLocalIpV4 方法测试', function(){
-    let localIp = '192.168.1.3';
-    // let localIp = '10.1.7.193';
+    // let localIp = '192.168.1.3';
+    let localIp = '10.1.7.193';
     it('无参数', function(){
       fdpUtil.getLocalIpV4().should.equal(localIp);/*测试时配置*/
     });
@@ -150,8 +150,8 @@ describe('fdp-utils 测试', function(){
   });
 
   describe('getLocalIpV6 方法测试', function(){
-    let localIp = 'fe80::884b:163c:faa4:f4f3';
-    // let localIp = 'fe80::4013:e0a1:8621:f913';
+    // let localIp = 'fe80::884b:163c:faa4:f4f3';
+    let localIp = 'fe80::4013:e0a1:8621:f913';
 
     it('无参数', function(){
       fdpUtil.getLocalIpV6().should.equal(localIp);/*测试时配置*/
