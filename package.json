@@ -16,6 +16,9 @@
     "url": "https://github.com/CaroseKYS/swa-utils/issues"
   },
   "homepage": "https://github.com/CaroseKYS/swa-utils#readme",
+  "dependencies": {
+    "mkdirp": "~0.5.1"
+  },
   "devDependencies": {
     "mocha": "~2.5.2",
     "istanbul": "~0.4.5",
