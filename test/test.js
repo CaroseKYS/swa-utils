@@ -16,6 +16,10 @@ describe('fdp-utils 测试', function(){
       }, 'swa-utils.getJsonProp 方法需要两个参数。');
     });
 
+    it('两个正确参数，但是不存在相应属性, 应当返回 undefined.', function(){
+      assert.equal(fdpUtil.getJsonProp({}, 'user.name'), undefined);
+    });
+
     it('两个正确参数, 应当返回 istanbul.', function(){
       assert.equal(fdpUtil.getJsonProp(path.join(__dirname, 'config.js'), 'user.name'), 'istanbul');
     });
