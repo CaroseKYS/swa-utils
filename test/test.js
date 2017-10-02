@@ -224,4 +224,24 @@ describe('fdp-utils 测试', function(){
     });
   });
 
+  describe('_getPropertyTool 方法测试', function () {
+    var _getPropertyTool = fdpUtil.__get__('_getPropertyTool');
+    it('json对象和属性字符串为空', function () {
+      should.equal(_getPropertyTool(), undefined);
+    });
+  });
+
+  describe('_extend 方法测试', function () {
+    var _extend = fdpUtil.__get__('_extend');
+    it('无参数', function () {
+      should.deepEqual(_extend(), {});
+    });
+
+    it('第一个参数不是Object', function () {
+      should.deepEqual(_extend(1), {});
+      should.deepEqual(_extend(''), {});
+      should.deepEqual(_extend(function () {}), {});
+    });
+  });
+
 });
