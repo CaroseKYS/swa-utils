@@ -78,55 +78,55 @@ describe('fdp-utils 测试', function(){
     });
 
     it('只有url参数，返回url本身', function(){
-      fdpUtil.resolveUrl('http://127.0.0.1:8080/adp').should.equal('http://127.0.0.1:8080/adp');
+      fdpUtil.resolveUrl('http://127.0.0.1:8080/test').should.equal('http://127.0.0.1:8080/test');
     });
 
     it('url 和 path参数，url不带查询字符串', function(){
-      fdpUtil.resolveUrl('http://www.leshui365.com', '/adp').should.equal('http://www.leshui365.com/adp');
+      fdpUtil.resolveUrl('http://www.intermen.cn', '/test').should.equal('http://www.intermen.cn/test');
     });
 
     it('url 和 path参数，url带查询字符串', function(){
-      fdpUtil.resolveUrl('http://www.leshui365.com?a=aa', '/adp').should.equal('http://www.leshui365.com/adp?a=aa');
+      fdpUtil.resolveUrl('http://www.intermen.cn?a=aa', '/test').should.equal('http://www.intermen.cn/test?a=aa');
     });
 
     it('url 、 path、query参数，url不带查询字符串', function(){
-      fdpUtil.resolveUrl('http://www.leshui365.com', '/adp', {
+      fdpUtil.resolveUrl('http://www.intermen.cn', '/test', {
         a: 'aa',
         b: 'bb'
-      }).should.equal('http://www.leshui365.com/adp?a=aa&b=bb');
+      }).should.equal('http://www.intermen.cn/test?a=aa&b=bb');
     });
 
     it('url 、 path、query参数，url带查询字符串', function(){
-      fdpUtil.resolveUrl('http://www.leshui365.com/?a=aa', '/adp', {
+      fdpUtil.resolveUrl('http://www.intermen.cn/?a=aa', '/test', {
         b: 'bb'
-      }).should.equal('http://www.leshui365.com/adp?a=aa&b=bb');
+      }).should.equal('http://www.intermen.cn/test?a=aa&b=bb');
     });
 
     it('url 、 query参数，url不带查询字符串', function(){
-      fdpUtil.resolveUrl('http://www.leshui365.com', '', {
+      fdpUtil.resolveUrl('http://www.intermen.cn', '', {
         b: 'bb'
-      }).should.equal('http://www.leshui365.com/?b=bb');
+      }).should.equal('http://www.intermen.cn/?b=bb');
     });
 
     it('url 、 query参数，url带查询字符串', function(){
-      fdpUtil.resolveUrl('http://www.leshui365.com/?a=aa', '', {
+      fdpUtil.resolveUrl('http://www.intermen.cn/?a=aa', '', {
         b: 'bb'
-      }).should.equal('http://www.leshui365.com/?a=aa&b=bb');
+      }).should.equal('http://www.intermen.cn/?a=aa&b=bb');
     });
 
     it('url 、 path、 query参数，path带查询字符串', function(){
-      fdpUtil.resolveUrl('http://www.leshui365.com/?a=aa', '/adp/?b=bb', {
+      fdpUtil.resolveUrl('http://www.intermen.cn/?a=aa', '/test/?b=bb', {
         c: 'cc'
-      }).should.equal('http://www.leshui365.com/adp/?a=aa&b=bb&c=cc');
+      }).should.equal('http://www.intermen.cn/test/?a=aa&b=bb&c=cc');
     });
 
     it('模拟 qs 返回空值', function(){
       muk(fdpUtil.__get__('qs'), 'parse', function(){
         return false;
       });
-      fdpUtil.resolveUrl('http://www.leshui365.com/?a=aa', '/adp/?b=bb', {
+      fdpUtil.resolveUrl('http://www.intermen.cn/?a=aa', '/test/?b=bb', {
         c: 'cc'
-      }).should.equal('http://www.leshui365.com/adp/?c=cc');
+      }).should.equal('http://www.intermen.cn/test/?c=cc');
       muk.restore();
     });
 
@@ -134,7 +134,8 @@ describe('fdp-utils 测试', function(){
 
   describe('getLocalIpV4 方法测试', function(){
     // let localIp = '192.168.1.3';
-    let localIp = '10.1.7.193';
+    // let localIp = '10.1.7.193';
+    let localIp = '192.168.100.107';
     it('无参数', function(){
       fdpUtil.getLocalIpV4().should.equal(localIp);/*测试时配置*/
     });
@@ -155,7 +156,8 @@ describe('fdp-utils 测试', function(){
 
   describe('getLocalIpV6 方法测试', function(){
     // let localIp = 'fe80::884b:163c:faa4:f4f3';
-    let localIp = 'fe80::4013:e0a1:8621:f913';
+    // let localIp = 'fe80::4013:e0a1:8621:f913';
+    let localIp = 'fe80::f089:f90c:966b:a54f';
 
     it('无参数', function(){
       fdpUtil.getLocalIpV6().should.equal(localIp);/*测试时配置*/

@@ -87,7 +87,7 @@ function _createDir(path){
 /**
  * 将url path query 解析为一个合法url
  * @author 康永胜
- * @date   2016-11-17T10:51:37+0800
+ * @date   2017-09-30 07:31:28
  * @param  {String}      sUrl     [url]
  * @param  {String}      sPath    [路径]
  * @param  {Object}      oQuery   [查询字符串对应的键值对]
@@ -116,7 +116,7 @@ function _resolveUrl(sUrl, sPath, oQuery){
 /**
  * 扩展对象的方法
  * @author 康永胜
- * @date   2016-11-17T10:53:21+0800
+ * @date   2017-09-30 07:33:46
  * @param  {Object}       oTarget  [待扩展对象]
  * @return {Object}                [扩展后的对象]
  */ 
