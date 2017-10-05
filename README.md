@@ -1,5 +1,5 @@
 # swa-utils
-swa平台的工具包
+swa平台的工具包。
 
 ## 功能描述
 该工具模块主要提供比较通用的，包括获取json文件(对象)中的信息、创建本地目录，移除本地目录等功能。
@@ -9,10 +9,9 @@ swa平台的工具包
 ### 加载模块
     var utils = require('swa-utils');
 
-### 获取JSON对象属性
+### 获取JSON对象(文件)属性
     utils.getJsonProp('./config.json', 'user.name');
     utils.getJsonProp({}, 'user.name');
-    
 
 ### 创建文件夹
     utils.createDir('D:\test');

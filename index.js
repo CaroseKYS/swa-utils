@@ -21,24 +21,24 @@ exports.getClientIp      = _getClientIp;
  * @return {[type]}               返回获取的属性
  */
 function _getJsonProp(file, propertiesStr){
-  var jsonData = file;
+  var jsonData;
+  var result  ;  /*结果*/
 
   if (!file || !propertiesStr) {
     throw new 'swa-utils.getJsonProp 方法需要两个参数。' ;
   }
 
   if (util.isString(file)) {
-    jsonData = require(file);
+    try{
+      jsonData = require(file);
+    } catch (e){}
+  }else if (util.isObject(file)) {
+    jsonData = file;
   }
 
-  /*结果*/
-  var result;
+  jsonData = jsonData || {};
 
-  if(util.isObject(jsonData)){
-    result = _getPropertyTool(jsonData, propertiesStr);
-  }else{
-    result = undefined;
-  }
+  result = _getPropertyTool(jsonData, propertiesStr);
 
   return result;
 }
